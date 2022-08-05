@@ -60,9 +60,9 @@ def get_unique_industries(path):
     """
     industries = list()
 
-    for each in [jobs["industry"] for jobs in read(
+    for each in [industry["industry"] for industry in read(
         path
-            ) if jobs["industry"] != ""]:
+            ) if industry["industry"] != ""]:
         if each not in industries:
             industries.append(each)
     return industries
@@ -101,7 +101,10 @@ def get_max_salary(path):
     int
         The maximum salary paid out of all job opportunities
     """
-    pass
+
+    salaries = [int(salary["max_salary"]) for salary in read(
+        path) if salary["max_salary"].isdigit()]
+    return max(salaries)
 
 
 def get_min_salary(path):
