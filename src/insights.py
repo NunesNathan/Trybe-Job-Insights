@@ -1,4 +1,3 @@
-from curses import has_key
 from src.jobs import read
 
 
