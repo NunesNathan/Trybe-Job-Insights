@@ -1,3 +1,4 @@
+from curses import has_key
 from src.jobs import read
 
 
@@ -153,7 +154,17 @@ def matches_salary_range(job, salary):
         If `job["min_salary"]` is greather than `job["max_salary"]`
         If `salary` isn't a valid integer
     """
-    pass
+    min_salary = job.get("min_salary", 0)
+    max_salary = job.get("max_salary", 0)
+
+    if type(min_salary) != int or type(
+     max_salary
+         ) != int or min_salary > max_salary or type(salary) != int:
+        raise ValueError()
+
+    in_range = min_salary <= salary <= max_salary
+
+    return in_range
 
 
 def filter_by_salary_range(jobs, salary):
